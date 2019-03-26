@@ -16,7 +16,7 @@
           v-model="password">
         </el-input>
       </el-form-item>
-      <el-button class="w450" type="primary" plain>登录</el-button>
+      <el-button class="w450" type="primary" plain @click="goLogin">登录</el-button>
     </el-form>
     <span class="cl-w">游客请访问：guest / 123456</span>
   </div>
@@ -30,7 +30,9 @@ export default class Login extends Vue {
   username = 'admin';
   password = '123456';
   //method
-
+  goLogin (){
+    
+  }
 }
 </script>
 <style lang="less">
