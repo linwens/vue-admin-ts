@@ -16,10 +16,7 @@ declare interface Datas {
     method?: Methods
     [key: string]: any
 }
-// 测试接口
-const requestConfig = {
-    getData: '/get/data'
-}
+
 /**
  * 声明一个HttpRequest类,包含一个请求所必要的方法，是基于axios的再封装
  */
@@ -42,7 +39,7 @@ class HttpRequest {
     interceptors(instance: any, url?: string) {
         // 请求拦截
         instance.interceptors.request.use((config: AxiosRequestConfig) => {
-            if(!Object.keys(this.queue).length){  
+            if(!Object.keys(this.queue).length){  // 为了异步请求的时候，精准控制loading?
                 loadingInstance = Loading.service({}); // show loading
             }
             if(url){
@@ -117,8 +114,6 @@ const conbineOptions = (_opts: any, data: Datas, method: Methods): AxiosRequestC
  * 抛出请求方法
  */
 const Api = (()=>{
-    const apiObj: any = {}
-    const requestList: any = requestConfig
     // AxiosRequestConfig | string 的写法就是ts中的联合类型
     // method: Methods = "GET" 表示参数method的类型为Methods,同时默认值为GET
     const fun = (opts: AxiosRequestConfig | string) => {
@@ -129,14 +124,8 @@ const Api = (()=>{
             return res;
         }
     }
-    /**
-     * 遍历所有配置的请求地址，给每个地址绑定上请求方法
-     */
-    Object.keys(requestConfig).forEach((key) => {
-        apiObj[key] = fun(requestList[key]) //fun()的参数是url地址或者是包含完整内容的数据
-    })
 
-    return apiObj
+    return fun
 })()
 
 export default Api as any;

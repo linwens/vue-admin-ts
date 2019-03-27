@@ -22,7 +22,8 @@
   </div>
 </template>
 <script lang="ts">
-import {Vue, Component} from 'vue-property-decorator';
+import {Vue, Component} from 'vue-property-decorator'
+import { doLogin } from '@/api/login'
 
 @Component
 export default class Login extends Vue {
@@ -31,7 +32,12 @@ export default class Login extends Vue {
   password = '123456';
   //method
   goLogin (){
-    
+    doLogin({
+      username: this.username,
+      password: this.password
+    }).then(res=>{
+      console.log(res);
+    })
   }
 }
 </script>
