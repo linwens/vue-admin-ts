@@ -22,21 +22,29 @@
   </div>
 </template>
 <script lang="ts">
-import {Vue, Component} from 'vue-property-decorator'
-import { doLogin } from '@/api/login'
+import {Vue, Component, Watch} from 'vue-property-decorator';
+import { dispatchLogin } from '@/store/dispatchs/user';
+import { Route } from 'vue-router';
 
 @Component
 export default class Login extends Vue {
   // data
-  username = 'admin';
-  password = '123456';
-  //method
-  goLogin (){
-    doLogin({
+  private username = 'admin';
+  private password = '123456';
+  private redirect: string | undefined = undefined;
+  @Watch('$route', { immediate: true })
+  private onRouteChange(route: Route) {
+    // TODO: remove the "as string" hack after v4 release for vue-router
+    // See https://github.com/vuejs/vue-router/pull/2050 for details
+    this.redirect = route.query && route.query.redirect as string;
+  }
+  // method
+  private goLogin() {
+    dispatchLogin({
       username: this.username,
-      password: this.password
-    }).then(res=>{
-      console.log(res);
+      password: this.password,
+    }).then( () => {
+      this.$router.push({ path: this.redirect || '/' })
     })
   }
 }

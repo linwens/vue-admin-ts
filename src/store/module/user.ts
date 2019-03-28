@@ -1,10 +1,15 @@
 import {GetterTree, MutationTree, ActionTree} from 'vuex'
+import { doLogin } from '@/api/login'
 
 interface UserState {
   token?: any,
   id: string
 }
 
+export interface loginData {
+  username: any,
+  password: any,
+}
 const state: UserState = {
   id: ''
 }
@@ -28,8 +33,12 @@ const mutations: MutationTree<UserState> = {
 }
 
 const actions: ActionTree<UserState, any> = {
-  LOGIN_ASYNC({commit, state: UserState}, data: UserState) {
-    commit('LOGIN', data)
+  async LOGIN_ASYNC({commit, state: UserState}, data: loginData) {
+    const {userData} = await doLogin({
+      username: data.username,
+      password: data.password,
+    })
+    commit('LOGIN', userData)
   },
   LOGOUT_ASYNC({commit, state: UserState}) {
     commit('LOGOUT')
