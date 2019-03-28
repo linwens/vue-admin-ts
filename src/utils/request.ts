@@ -4,11 +4,12 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 import { Loading, Message } from 'element-ui'
 import { getToken } from './token'
+import { ONLINEHOST } from '@/config'
 let loadingInstance: any // 存放Loading实例
 /**
  * 声明一些基础变量
  */
-const baseURL = location.origin
+const baseURL = process.env.NODE_ENV === 'production' ? ONLINEHOST : location.origin
 const ISMOCK: boolean = true
 const token = getToken(); // 获取token值
 const conmomPrams: any = {} // 请求的公共参数

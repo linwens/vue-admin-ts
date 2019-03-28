@@ -40,6 +40,7 @@ export default class Login extends Vue {
   }
   // method
   private goLogin() {
+    console.dir(dispatchLogin)
     dispatchLogin({
       username: this.username,
       password: this.password,

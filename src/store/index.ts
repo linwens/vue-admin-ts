@@ -6,9 +6,6 @@ import User from './module/user'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules: {
-    User,
-  },
   state: {
 
   },
@@ -17,5 +14,8 @@ export default new Vuex.Store({
   },
   actions: {
 
+  },
+  modules: {
+    User,
   },
 });
