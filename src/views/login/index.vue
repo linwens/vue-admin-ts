@@ -19,25 +19,40 @@
       <el-button class="w450" type="primary" plain @click="goLogin">登录</el-button>
     </el-form>
     <span class="cl-w">游客请访问：guest / 123456</span>
+    <test />
   </div>
 </template>
 <script lang="ts">
-import {Vue, Component, Watch} from 'vue-property-decorator';
+import {Vue, Component, Prop, Watch} from 'vue-property-decorator';
 import { dispatchLogin } from '@/store/dispatchs/user';
 import { Route } from 'vue-router';
+import Test from '@/components/test.vue'
 
-@Component
+@Component({
+  components: {
+    Test,
+  }
+})
 export default class Login extends Vue {
+  // props
+  @Prop(Number) private readonly propA!: number
   // data
   private username = 'admin';
   private password = '123456';
   private redirect: string | undefined = undefined;
+  // computed
+  get calc() {
+    return ''
+  }
+  // watch
   @Watch('$route', { immediate: true })
   private onRouteChange(route: Route) {
     // TODO: remove the "as string" hack after v4 release for vue-router
     // See https://github.com/vuejs/vue-router/pull/2050 for details
     this.redirect = route.query && route.query.redirect as string;
   }
+  // 钩子函数
+  private created() {}
   // method
   private goLogin() {
     dispatchLogin({
