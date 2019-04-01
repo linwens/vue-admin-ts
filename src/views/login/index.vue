@@ -37,8 +37,8 @@ export default class Login extends Vue {
   // props
   @Prop(Number) private readonly propA!: number
   // data
-  private username = 'admin';
-  private password = '123456';
+  private username = 'koa';
+  private password = '';
   private redirect: string | undefined = undefined;
   // computed
   get calc() {

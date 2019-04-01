@@ -3,7 +3,7 @@ import { doLogin } from '@/api/login'
 
 interface UserState {
   token?: any,
-  id: string
+  uid: string
 }
 
 export interface loginData {
@@ -11,7 +11,8 @@ export interface loginData {
   password: any,
 }
 const state: UserState = {
-  id: ''
+  uid: '',
+  token: null,
 }
 // <UserState, any> 就是交叉类型的写法
 const getters: GetterTree<UserState, any> = {
@@ -22,23 +23,26 @@ const getters: GetterTree<UserState, any> = {
 
 const mutations: MutationTree<UserState> = {
   LOGIN(state: UserState, data: UserState) {
+    console.log(state)
+    console.log(data)
     for(let key in data){
       (<any>state)[key] = (<any>data)[key]
     }
   },
   LOGOUT(state: UserState) {
-    state.id = '';
+    state.uid = '';
     state.token = null;
   }
 }
 
 const actions: ActionTree<UserState, any> = {
   async LOGIN_ASYNC({commit, state: UserState}, data: loginData) {
-    const {userData} = await doLogin({
+    const userData = await doLogin({
       username: data.username,
       password: data.password,
     })
-    commit('LOGIN', userData)
+    // 登录成功后往state里塞值
+    commit('LOGIN', userData.rslt)
   },
   LOGOUT_ASYNC({commit, state: UserState}) {
     commit('LOGOUT')
