@@ -1,0 +1,13 @@
+
+// 宽度/高度 循环
+.forWH(@type, @n) when (@n>0) {
+  .@{type}@{n} {
+    & when (@type = w) {
+      width: @n*1px;
+    }
+    & when (@type = h) {
+      height: @n*1px;
+    }
+  }
+  .forWH(@type, @n - 1)
+}

@@ -4,16 +4,17 @@
       <el-form-item class="w450 h50 ma">
         <el-input
           placeholder="请输入账户"
-          prefix-icon="el-icon-search"
           v-model="username">
+          <v-icon slot="prefix" name="user" style="color: #c0c4cc;"></v-icon>
         </el-input>
       </el-form-item>
       <el-form-item class="w450 h50 ma">
         <el-input
+          show-password
           class="w450 h50"
           placeholder="请输入密码"
-          prefix-icon="el-icon-search"
           v-model="password">
+          <v-icon slot="prefix" name="lock" style="color: #c0c4cc;"></v-icon>
         </el-input>
       </el-form-item>
       <el-button class="w450" type="primary" plain @click="goLogin">登录</el-button>
@@ -27,6 +28,8 @@ import {Vue, Component, Prop, Watch} from 'vue-property-decorator';
 import { dispatchLogin } from '@/store/dispatchs/user';
 import { Route } from 'vue-router';
 import Test from '@/components/test.vue'
+import 'vue-awesome/icons/user'
+import 'vue-awesome/icons/lock'
 
 @Component({
   components: {
@@ -66,7 +69,7 @@ export default class Login extends Vue {
 </script>
 <style lang="less">
   #login{
-    background-color: rgb(56, 47, 128);
+    background-color: #2d3a4b;
   }
 </style>
 
