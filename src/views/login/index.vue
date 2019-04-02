@@ -69,7 +69,7 @@ export default class Login extends Vue {
 </script>
 <style lang="less">
   #login{
-    background-color: rgb(56, 47, 128);
+    background-color: #2d3a4b;
   }
 </style>
 
