@@ -1,26 +1,30 @@
 <template>
-  <div id="login" class="tc">
-    <el-form>
-      <el-form-item class="w450 h50 ma">
-        <el-input
-          placeholder="请输入账户"
-          v-model="username">
-          <v-icon slot="prefix" name="user" style="color: #c0c4cc;"></v-icon>
-        </el-input>
-      </el-form-item>
-      <el-form-item class="w450 h50 ma">
-        <el-input
-          show-password
-          class="w450 h50"
-          placeholder="请输入密码"
-          v-model="password">
-          <v-icon slot="prefix" name="lock" style="color: #c0c4cc;"></v-icon>
-        </el-input>
-      </el-form-item>
-      <el-button class="w450" type="primary" plain @click="goLogin">登录</el-button>
-    </el-form>
-    <span class="cl-w">游客请访问：guest / 123456</span>
-    <test />
+  <div id="login" class="pos-a df s-jcc s-aic bg-darkblue">
+    <div>
+      <h2 class="tc mb20 fs32 cl-w">vue-admin-typescript</h2>
+      <el-form>
+        <el-form-item class="login-fi df w430 ma mb20 bd br5">
+          <el-input
+            class="w430"
+            placeholder="请输入账户"
+            v-model="username">
+            <v-icon slot="prefix" name="user" style="color: #c0c4cc;"></v-icon>
+          </el-input>
+        </el-form-item>
+        <el-form-item class="login-fi df w430 ma mb20 bd br5">
+          <el-input
+            show-password
+            class="w430"
+            placeholder="请输入密码"
+            v-model="password">
+            <v-icon slot="prefix" name="lock" style="color: #c0c4cc;"></v-icon>
+          </el-input>
+        </el-form-item>
+        <el-button class="w450 h62 fs18 mb10" type="primary" plain @click="goLogin">登录</el-button>
+      </el-form>
+      <p class="cl-w mb10">游客请访问：guest / 123456</p>
+      <test />
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -69,7 +73,19 @@ export default class Login extends Vue {
 </script>
 <style lang="less">
   #login{
-    background-color: #2d3a4b;
+    height: 100%;
+    width: 100%;
+    .login-fi{
+      padding: 10px;
+      background: rgba(0,0,0,0.27);
+
+    }
+    .el-input__inner{
+      width: 100%;
+      border: none;
+      background: rgba(0,0,0,0);
+      color: rgb(192, 196, 204);
+    }
   }
 </style>
 

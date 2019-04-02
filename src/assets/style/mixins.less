@@ -11,3 +11,25 @@
   }
   .forWH(@type, @n - 1)
 }
+//定位
+.pos(@type){
+  .pos-@{type}{
+    & when ( @type = r){
+      position: relative;
+    }
+    & when ( @type = a){
+      position: absolute;
+    }
+    & when ( @type = f){
+      position: fixed;
+    }
+    top:0px;left:0px;
+  }
+}
+//边框圆角
+.border-radius(@n) when (@n>0) {
+  .br@{n} {
+    border-radius: @n*1px;
+  }
+  .border-radius(@n - 1)
+}

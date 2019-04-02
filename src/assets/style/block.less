@@ -1,13 +1,41 @@
 
 @import './mixins.less';
+@import './variables.less';
 
 //常规样式
 .forWH(w, 450);
-.forWH(h, 50);
+.forWH(h, 100);
+//定位
+.pos(r);
+.pos(a);
+.pos(f);
+//装饰
+.border-radius(10);
 
+//字体
+.fs18{
+    font-size: 18px;
+}
+.fs32{
+    font-size: 32px;
+}
+
+.w-100{
+    width: 100%;
+}
+.bd{
+    border: 1px solid #fff;
+}
 .ma{
     margin: 0 auto;
 }
+.mb10{
+    margin-bottom: 10px;
+}
+.mb20{
+    margin-bottom: 20px;
+}
+
 //布局样式
 .df{
     display: flex;
@@ -15,7 +43,9 @@
 .s-jcc{
     justify-content: center;
 }
-
+.s-aic{
+    align-items: center;
+}
 //小样式
 .tc{
     text-align: center;
@@ -24,4 +54,7 @@
 //颜色
 .cl-w{
     color: #fff;
+}
+.bg-darkblue{
+    background-color: @darkblue;
 }
