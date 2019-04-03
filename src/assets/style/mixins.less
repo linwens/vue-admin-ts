@@ -11,6 +11,23 @@
   }
   .forWH(@type, @n - 1)
 }
+//盒模型
+.boxModel(@type, @dir, @n) when (@n>0){
+  @name: "@{type}";
+  @direction: "@{dir}";
+  @t: top;
+  @r: right;
+  @b: bottom;
+  @l: left;
+  @m: margin;
+  @p: padding;
+  @stylename1: @@name;
+  @stylename2: @@direction;
+  .@{type}@{dir}@{n} {
+    @{stylename1}-@{stylename2}: @n*1px !important;
+  }
+  .boxModel(@type, @dir, @n - 1);
+}
 //定位
 .pos(@type){
   .pos-@{type}{
@@ -32,4 +49,11 @@
     border-radius: @n*1px;
   }
   .border-radius(@n - 1)
+}
+//字体
+.font-size(@n) when (@n>12) {
+  .fs@{n} {
+    font-size: @n*1px;
+  }
+  .font-size(@n - 1);
 }
