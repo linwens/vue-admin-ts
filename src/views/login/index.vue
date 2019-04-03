@@ -34,13 +34,17 @@ import { Route } from 'vue-router';
 import Test from '@/components/test.vue'
 import 'vue-awesome/icons/user'
 import 'vue-awesome/icons/lock'
+import {State, namespace} from 'vuex-class'
 
+const UserState = namespace('user', State);
 @Component({
   components: {
     Test,
   }
 })
 export default class Login extends Vue {
+  //store
+  @UserState('uid') userUid
   // props
   @Prop(Number) private readonly propA!: number
   // data
@@ -59,7 +63,11 @@ export default class Login extends Vue {
     this.redirect = route.query && route.query.redirect as string;
   }
   // 钩子函数
-  private created() {}
+  private created() {
+    console.log(this.$store.state.User.uid);
+    console.log(`测试vuex-class-----> `);
+    console.log(this.userUid);
+  }
   // method
   private goLogin() {
     dispatchLogin({

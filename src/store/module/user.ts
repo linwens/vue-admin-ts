@@ -11,7 +11,7 @@ export interface loginData {
   password: any,
 }
 const state: UserState = {
-  uid: '',
+  uid: '111111',
   token: null,
 }
 // <UserState, any> 就是交叉类型的写法
@@ -50,6 +50,7 @@ const actions: ActionTree<UserState, any> = {
 }
 
 export default {
+  namespaced: true,
   state,
   getters,
   mutations,
