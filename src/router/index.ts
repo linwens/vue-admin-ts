@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './router'
-import { getToken } from '@/Utils/token'
+import { getToken } from '@/utils/token'
 
 Vue.use(Router)
 const token = getToken();
 
 const router = new Router({
   routes,
-  mode: 'history'
+  // mode: 'history'
 })
 
 // 登陆页面路由 name
