@@ -1,0 +1,59 @@
+
+// 宽度/高度 循环
+.forWH(@type, @n) when (@n>0) {
+  .@{type}@{n} {
+    & when (@type = w) {
+      width: @n*1px;
+    }
+    & when (@type = h) {
+      height: @n*1px;
+    }
+  }
+  .forWH(@type, @n - 1)
+}
+//盒模型
+.boxModel(@type, @dir, @n) when (@n>0){
+  @name: "@{type}";
+  @direction: "@{dir}";
+  @t: top;
+  @r: right;
+  @b: bottom;
+  @l: left;
+  @m: margin;
+  @p: padding;
+  @stylename1: @@name;
+  @stylename2: @@direction;
+  .@{type}@{dir}@{n} {
+    @{stylename1}-@{stylename2}: @n*1px !important;
+  }
+  .boxModel(@type, @dir, @n - 1);
+}
+//定位
+.pos(@type){
+  .pos-@{type}{
+    & when ( @type = r){
+      position: relative;
+    }
+    & when ( @type = a){
+      position: absolute;
+    }
+    & when ( @type = f){
+      position: fixed;
+    }
+    top:0px;left:0px;
+  }
+}
+//边框圆角
+.border-radius(@n) when (@n>0) {
+  .br@{n} {
+    border-radius: @n*1px;
+  }
+  .border-radius(@n - 1)
+}
+//字体
+.font-size(@n) when (@n>12) {
+  .fs@{n} {
+    font-size: @n*1px;
+  }
+  .font-size(@n - 1);
+}
